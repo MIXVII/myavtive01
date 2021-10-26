@@ -11,6 +11,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Run a one-line script
         run: |
+          dotnet test test/MASA.BuildingBlocks.DDD.Domain.Tests/MASA.BuildingBlocks.DDD.Domain.Tests.csproj
           echo Hello, world!
           ls
           pwd
