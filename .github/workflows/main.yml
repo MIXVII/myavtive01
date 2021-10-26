@@ -4,23 +4,25 @@ on:
     branches: [ dev ]
   pull_request:
     branches: [ dev ]
+env:
+  DOTNET_VERSION: '6.0'
+  
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build-and-test:
+    name: build-and-test-${{matrix.os}}
+    runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        dotnet-version: ['3.0', '3.1.x', '5.0.x','6.x' ]
+        os: [ubuntu-latest, windows-latest, macOS-latest]
     steps:
       - uses: actions/checkout@v2
-      - name: Run a one-line script
-        run: |
-          dotnet test test/MASA.BuildingBlocks.DDD.Domain.Tests/MASA.BuildingBlocks.DDD.Domain.Tests.csproj
-          echo Hello, world!
-          ls
-          pwd
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-          ls
-          pwd
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install dependencies
+        run: dotnet restore
+      
+      - name: Test
+        run: dotnet test test/MASA.BuildingBlocks.DDD.Domain.Tests/MASA.BuildingBlocks.DDD.Domain.Tests.csproj
