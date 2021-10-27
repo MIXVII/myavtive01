@@ -26,4 +26,4 @@ jobs:
           ls 
           D:\a\dotnet-install.ps1 -Channel  6.0
           dotnet tool install  --global Microsoft.dotnet-ef 
-          dotnet version 
+          dotnet test ./myavtive01/test/MASA.BuildingBlocks.DDD.Domain.Tests/MASA.BuildingBlocks.DDD.Domain.Tests.csproj
