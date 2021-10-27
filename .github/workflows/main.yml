@@ -15,11 +15,18 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+      - uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
+          dotnet-version: '2.2.106'
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.100-preview.4.21255.9'
+          include-prerelease: true
+#       - uses: actions/checkout@v2
+#       - name: Setup .NET Core
+#         uses: actions/setup-dotnet@v1
+#         with:
+#           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: Install dependencies
         run: dotnet restore
