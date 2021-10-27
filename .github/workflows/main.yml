@@ -17,12 +17,15 @@ jobs:
         os: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '6.0.100-rc.2'
-          include-prerelease: true
-      - name: version get
-        run: dotnet version
+#       - uses: actions/setup-dotnet@v1
+#         with:
+#           dotnet-version: '6.0.100-rc.2'
+#           include-prerelease: true
+      - name: install dotnet 
+        run: |
+          wget https://dot.net/v1/dotnet-install.sh
+          chmod +x dotnet-install.sh && ./dotnet-install.sh   -c 6.0
+          dotnet version
 #       - uses: actions/checkout@v2
 #       - name: Setup .NET Core
 #         uses: actions/setup-dotnet@v1
