@@ -14,27 +14,10 @@ jobs:
     strategy:
       matrix:
 #         os: [ubuntu-latest, windows-latest, macOS-latest]
-        os: [ubuntu-latest]
+        os: [windows-latest]
     steps:
       - uses: actions/checkout@v2
-#       - uses: actions/setup-dotnet@v1
-#         with:
-#           dotnet-version: '6.0.100-rc.2'
-#           include-prerelease: true
       - name: install dotnet 
         run: |
-          sudo snap install dotnet-sdk --channel=6.0/beta --classic
-          sudo dotnet-sdk.dotnet version 
-          sudo snap alias dotnet-sdk.dotnet dotnet
-          sudo dotnet version
-#       - uses: actions/checkout@v2
-#       - name: Setup .NET Core
-#         uses: actions/setup-dotnet@v1
-#         with:
-#           dotnet-version: ${{ env.DOTNET_VERSION }}
-
-#       - name: Install dependencies
-#         run: dotnet restore
-      
-#       - name: Test
-#         run: dotnet test test/MASA.BuildingBlocks.DDD.Domain.Tests/MASA.BuildingBlocks.DDD.Domain.Tests.csproj
+          Invoke-WebRequest https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.ps1
+          .\dotnet-install.ps1 -Channel  6.0
