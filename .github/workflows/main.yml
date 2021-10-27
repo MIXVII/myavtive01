@@ -24,8 +24,9 @@ jobs:
       - name: install dotnet 
         run: |
           sudo snap install dotnet-sdk --channel=6.0/beta --classic
+          sudo dotnet-sdk.dotnet version 
           sudo snap alias dotnet-sdk.dotnet dotnet
-          dotnet version
+          sudo dotnet version
 #       - uses: actions/checkout@v2
 #       - name: Setup .NET Core
 #         uses: actions/setup-dotnet@v1
