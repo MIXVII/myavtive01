@@ -20,14 +20,16 @@ jobs:
         with:
           dotnet-version: '6.0.x'
           include-prerelease: true
+      - name: version get
+        run: dotnet version
 #       - uses: actions/checkout@v2
 #       - name: Setup .NET Core
 #         uses: actions/setup-dotnet@v1
 #         with:
 #           dotnet-version: ${{ env.DOTNET_VERSION }}
 
-      - name: Install dependencies
-        run: dotnet restore
+#       - name: Install dependencies
+#         run: dotnet restore
       
-      - name: Test
-        run: dotnet test test/MASA.BuildingBlocks.DDD.Domain.Tests/MASA.BuildingBlocks.DDD.Domain.Tests.csproj
+#       - name: Test
+#         run: dotnet test test/MASA.BuildingBlocks.DDD.Domain.Tests/MASA.BuildingBlocks.DDD.Domain.Tests.csproj
