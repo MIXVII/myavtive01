@@ -23,4 +23,4 @@ jobs:
         include-prerelease: true
     - run: |
         ls
-        # dotnet test
+        dotnet test
