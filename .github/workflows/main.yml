@@ -25,3 +25,4 @@ jobs:
           cd D:\a\
           ls 
           D:\a\dotnet-install.ps1 -Channel  6.0
+          dotnet version 
