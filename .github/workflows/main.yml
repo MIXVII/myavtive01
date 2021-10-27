@@ -23,13 +23,9 @@ jobs:
 #           include-prerelease: true
       - name: install dotnet 
         run: |
-          wget  https://download.visualstudio.microsoft.com/download/pr/20283373-1d83-4879-8278-0afb7fd4035e/56f204f174743b29a656499ad0fc93c3/dotnet-sdk-6.0.100-rc.2.21505.57-linux-x64.tar.gz
-          DOTNET_FILE=dotnet-sdk-6.0.100-rc.2.21505.57-linux-x64.tar.gz
-          export DOTNET_ROOT=$(pwd)/dotnet
-          echo $DOTNET_ROOT
-          mkdir -p "$DOTNET_ROOT" && tar zxf "$DOTNET_FILE" -C "$DOTNET_ROOT"
-          export PATH=$PATH:$DOTNET_ROOT
-          dotnet version 
+          sudo snap install dotnet-sdk --channel=6.0/beta --classic
+          sudo snap alias dotnet-sdk.dotnet dotnet
+          dotnet version
 #       - uses: actions/checkout@v2
 #       - name: Setup .NET Core
 #         uses: actions/setup-dotnet@v1
