@@ -24,3 +24,4 @@ jobs:
     - run: |
         ls
         dotnet test
+        echo ${{ secerts.CODECOV_TOKEN}}
