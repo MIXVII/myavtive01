@@ -31,8 +31,10 @@ jobs:
         ls
         echo $SUPER_SECRET
     - uses: codecov/codecov-action@v2
+      env:
+        CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
       with:
-        token: ${{ secrets.CODECOV_TOKEN }}
+        token: ${{ CODECOV_TOKEN }}
         files: ./test.xml
         flags: unittests
         name: codecov-umbrella
