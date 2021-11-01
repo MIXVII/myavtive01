@@ -25,5 +25,16 @@ jobs:
         SUPER_SECRET: ${{ secrets.CODECOV_TOKEN }}
     - run: |
         ls
-        dotnet test
+        cd test/MASA.BuildingBlocks.DDD.Domain.Tests
+        dotnet add package JunitXml.TestLogger   
+        dotnet test --logger:"junit;LogFilePath=./test.xml"
         echo $SUPER_SECRET
+    - uses: codecov/codecov-action@v2
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./test.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: true 
+        verbose: true
+   
