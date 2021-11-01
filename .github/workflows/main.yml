@@ -28,6 +28,7 @@ jobs:
         cd test/MASA.BuildingBlocks.DDD.Domain.Tests
         dotnet add package JunitXml.TestLogger   
         dotnet test --logger:"junit;LogFilePath=./test.xml"
+        ls
         echo $SUPER_SECRET
     - uses: codecov/codecov-action@v2
       with:
