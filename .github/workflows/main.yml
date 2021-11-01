@@ -30,14 +30,15 @@ jobs:
         dotnet test --logger:"junit;LogFilePath=./test.xml"
         ls
         echo $SUPER_SECRET
+    - name: upload codecov
     - uses: codecov/codecov-action@v2
       env:
         CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
       with:
         token: ${{ CODECOV_TOKEN }}
+        directory: test/MASA.BuildingBlocks.DDD.Domain.Tests
         files: ./test.xml
         flags: unittests
         name: codecov-umbrella
         fail_ci_if_error: true 
         verbose: true
-   
