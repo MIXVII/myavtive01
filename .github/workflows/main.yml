@@ -18,16 +18,16 @@ jobs:
     steps:
     - name: run automated 
       uses: actions/checkout@v2
-    - name: test auto
+    - name: setting path
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '6.0.x'
         include-prerelease: true
-      env:
-        SUPER_SECRET: ${{ secrets.COVERALLMYAVITVE01_TOKEN }}
-    - run: |
-        dotnet test/MASA.BuildingBlocks.DDD.Domain.Tests/MASA.BuildingBlocks.DDD.Domain.Tests.csproj /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
-        ls test/MASA.BuildingBlocks.DDD.Domain.Tests/TestResults
+    - name: run test 
+      run: |
+        ls
+        dotnet ./test/MASA.BuildingBlocks.DDD.Domain.Tests/MASA.BuildingBlocks.DDD.Domain.Tests.csproj /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
+        ls ./test/MASA.BuildingBlocks.DDD.Domain.Tests/TestResults
     - name: push coverage report to coveralls.io
       uses: coverallsapp/github-action@master
       with:
