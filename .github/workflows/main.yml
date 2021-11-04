@@ -26,7 +26,8 @@ jobs:
     - name: run test 
       run: |
         ls
-        dotnet ./test/MASA.BuildingBlocks.DDD.Domain.Tests/MASA.BuildingBlocks.DDD.Domain.Tests.csproj /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
+        dotnet test --help 
+        dotnet test  ./test/MASA.BuildingBlocks.DDD.Domain.Tests/MASA.BuildingBlocks.DDD.Domain.Tests.csproj /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
         ls ./test/MASA.BuildingBlocks.DDD.Domain.Tests/TestResults
     - name: push coverage report to coveralls.io
       uses: coverallsapp/github-action@master
