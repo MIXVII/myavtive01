@@ -14,31 +14,42 @@ jobs:
     strategy:
       matrix:
 #         os: [ubuntu-latest, windows-latest, macOS-latest]
-        os: [ubuntu-latest]
+        os: [windows-latest]
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-dotnet@v1
+    - name: run automated 
+      uses: actions/checkout@v2
+    - name: test auto
+      uses: actions/setup-dotnet@v1
       with:
         dotnet-version: '6.0.x'
         include-prerelease: true
       env:
-        SUPER_SECRET: ${{ secrets.CODECOV_TOKEN }}
+        SUPER_SECRET: ${{ secrets.COVERALLMYAVITVE01_TOKEN }}
     - run: |
-        ls
-        cd test/MASA.BuildingBlocks.DDD.Domain.Tests
-        dotnet add package JunitXml.TestLogger   
-        dotnet test --logger:"junit;LogFilePath=./test.xml"
-        ls
-        echo $SUPER_SECRET
-    - name: upload codecov
-    - uses: codecov/codecov-action@v2
-      env:
-        CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
+        dotnet test/MASA.BuildingBlocks.DDD.Domain.Tests/MASA.BuildingBlocks.DDD.Domain.Tests.csproj /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
+        ls test/MASA.BuildingBlocks.DDD.Domain.Tests/TestResults
+    - name: push coverage report to coveralls.io
+      uses: coverallsapp/github-action@master
       with:
-        token: ${{ CODECOV_TOKEN }}
-        directory: test/MASA.BuildingBlocks.DDD.Domain.Tests
-        files: ./test.xml
-        flags: unittests
-        name: codecov-umbrella
-        fail_ci_if_error: true 
-        verbose: true
+        github-token: ${{ secrets.COVERALLMYAVITVE01_TOKEN }}
+        path-to-lcov: test/MASA.BuildingBlocks.DDD.Domain.Tests/TestResults/*
+
+
+#        ls
+#        cd test/MASA.BuildingBlocks.DDD.Domain.Tests
+#        dotnet add package JunitXml.TestLogger   
+#        dotnet test --logger:"junit;LogFilePath=./test.xml"
+#        ls
+#        echo $SUPER_SECRET
+#    - name: upload codecov
+#    - uses: codecov/codecov-action@v2
+#      env:
+#        CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
+#      with:
+#        token: ${{ CODECOV_TOKEN }}
+#        directory: test/MASA.BuildingBlocks.DDD.Domain.Tests
+#        files: ./test.xml
+#        flags: unittests
+#        name: codecov-umbrella
+#        fail_ci_if_error: true 
+#        verbose: true
