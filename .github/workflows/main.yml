@@ -27,8 +27,8 @@ jobs:
       run: |
         ls
         dotnet test --help 
-        dotnet test  /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
-        ls ./test/MASA.BuildingBlocks.DDD.Domain.Tests/TestResults
+        dotnet test  test/MASA.Contrib.DDD.Domain.Repository.EF.CustomRepository/MASA.Contrib.DDD.Domain.Repository.EF.CustomRepository.csproj /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=lcov
+        ls test/MASA.Contrib.DDD.Domain.Repository.EF.CustomRepository/TestResults
     - name: push coverage report to coveralls.io
       uses: coverallsapp/github-action@master
       with:
